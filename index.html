@@ -120,7 +120,11 @@
 
 		data.forEach(function(d) {
          // Reads in data.csv file here. 
-         pairValueWithId[d.id] = +d.value;
+         if( d.filter == 1 ){
+            pairValueWithId[d.id] = -1;
+         } else {
+            pairValueWithId[d.id] = +d.value;
+         }
          pairStateWithId[d.id] = d.state;
          pairCountyWithId[d.id] = d.county;
 		 });
@@ -147,8 +151,8 @@
                   "<br>County: " + pairCountyWithId[d.id] + ", " + pairStateWithId[d.id] +
                   "<br>Value: " + pairValueWithId[d.id].toFixed(2))
                   
-         .style("left", (d3.event.pageX) + "px")
-		 .style("top", (d3.event.pageY -30) + "px");
+         .style("left", (d3.event.pageX + 5) + "px")
+		 .style("top", (d3.event.pageY + 5) + "px");
 		 })
 		 .on("mouseout", function() {
 		 	var sel = d3.select(this);
